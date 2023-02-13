@@ -7,14 +7,16 @@ import { setupWorker } from 'msw'
 const worker = setupWorker(...testHandlers)
 
 async function prepare() {
-  await import('../public/mockServiceWorker.js?worker')
+  if ('active' === import.meta.env.VITE_MSW) {
+    await import('../public/mockServiceWorker.js?worker')
 
-  return worker.start({}).then(() => {
-    console.groupCollapsed('[MSW] Loaded with handlers 🎉')
-    worker.printHandlers()
-    console.groupEnd()
-    return null
-  })
+    return worker.start({}).then(() => {
+      console.groupCollapsed('[MSW] Loaded with handlers 🎉')
+      worker.printHandlers()
+      console.groupEnd()
+      return null
+    })
+  }
 }
 
 void prepare().then(() => {

@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev-msw": "VITE_MSW=active vite",
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
     "build-only": "vite build",

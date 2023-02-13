@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test'
+import { expect, test } from '../src/mocks/test'
 
 test('should be 1', async ({ page }) => {
   await page.goto('/')

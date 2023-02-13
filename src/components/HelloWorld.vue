@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { testRepo } from '../repository/test'
+import { testRepo } from '../repository/sample'
 
 defineProps<{ msg: string }>()
 
@@ -24,7 +24,7 @@ onMounted(async () => {
   </div>
 
   <div v-else>
-    <p>data:{{ data }}</p>
+    <p data-testid="fetch-test">{{ data }}</p>
   </div>
 
   <h1>{{ msg }}</h1>

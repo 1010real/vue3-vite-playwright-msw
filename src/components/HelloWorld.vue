@@ -1,12 +1,32 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
+import { testRepo } from '../repository/sample'
 
 defineProps<{ msg: string }>()
 
 const count = ref(0)
+
+const isLoading = ref(true)
+const data = ref(null)
+
+onMounted(async () => {
+  const repo = testRepo()
+  const responseData = await repo.postTest('1')
+
+  data.value = responseData.id
+  isLoading.value = false
+})
 </script>
 
 <template>
+  <div v-if="isLoading">
+    <p>loading...</p>
+  </div>
+
+  <div v-else>
+    <p data-testid="fetch-test">{{ data }}</p>
+  </div>
+
   <h1>{{ msg }}</h1>
 
   <div class="card">

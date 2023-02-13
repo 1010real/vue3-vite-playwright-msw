@@ -13,7 +13,7 @@ onMounted(async () => {
   const repo = testRepo()
   const responseData = await repo.postTest('1')
 
-  data.value = responseData
+  data.value = responseData.id
   isLoading.value = false
 })
 </script>
